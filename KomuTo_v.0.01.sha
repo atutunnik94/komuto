@@ -1,23 +1,174 @@
 Make(delphi)
 ver(4.05 build 186)
-Add(MainForm,2953706,399,161)
+Add(MainForm,2953706,266,161)
 {
  Position=1
  Point(onClose)
- link(onCreate,1776696:doStart,[])
- link(onClose,1776696:doStop,[])
+ link(onCreate,15757425:doEvent1,[(310,181)(310,104)])
 }
-Add(DDEServer,1776696,448,175)
+Add(DDEServer,1776696,539,105)
 {
- ServiceName="Kmt"
- link(onGetItem,1522131:doAdd,[])
+ ServiceName="KomuTo"
+ link(onPutItem,9292823:doString,[])
 }
-Add(DDEClient,2669060,455,385)
+Add(Hub,15757425,322,98)
+{
+ link(onEvent1,2220422:doPart,[(350,104)(350,90)])
+ link(onEvent2,1776696:doStart,[])
+}
+Add(Application,14931662,364,21)
 {
 }
-Add(Memo,1522131,567,175)
+Add(FilePartElm,2220422,364,84)
 {
- Left=565
- Top=180
- Align=5
+ Mode=2
+ link(onPart,2953706:doCaption,[(416,90)(416,15)(254,15)(254,167)])
+ link(FileName,14931662:AppFileName,[])
+}
+Add(FormatStr,9292823,609,112)
+{
+ Mask="%1;%2"
+ link(onFString,12673048:doInformRecievers,[])
+ link(Str1,1776696:ItemName,[(615,100)(587,100)(587,149)(559,149)])
+}
+Add(TabControl,11431581,532,252)
+{
+ Width=384
+ Height=20
+ Align=2
+ Tabs=#9:Программы|6:Ошибки|
+ Bitmaps=[]
+}
+Add(ChildPanelEx,4814410,777,245)
+{
+ link(_Data,9601964:getVar,[])
+}
+BEGIN_SDK
+  Add(EditMultiEx,16402310,21,21)
+  {
+   WorkCount=#5:doAdd|
+   DataCount=#5:_Data|
+   link(doAdd,13533112:doCompare,[(305,27)(305,230)])
+  }
+  Add(Panel,3191038,35,105)
+  {
+   Left=35
+   Top=105
+   Align=5
+  }
+  Add(LineBreakEx,14213676,399,168)
+  {
+   @Color=16757247
+   Caption="topikName"
+   Type=3
+   link(_Data,16402310:_Data,[(405,94)(27,94)])
+  }
+  Add(StringTableMT,1152018,728,224)
+  {
+   Top=20
+   Width=384
+   Height=241
+   Align=5
+   Columns=#4:Прог|6:Ошибка|
+   IconsCheck=[]
+   MiscIcons=[]
+   Icons=[]
+  }
+  Add(LineBreakEx,10709325,588,168)
+  {
+   @Color=16757247
+   Caption="topikName"
+   Type=2
+  }
+  Add(StrMask,13533112,588,224)
+  {
+   Mask="Подключение"
+   link(onFalse,1152018:doAdd,[])
+   link(Str,10709325:getVar,[])
+  }
+END_SDK
+Add(ChildPanelEx,6467206,784,301)
+{
+}
+BEGIN_SDK
+  Add(EditMultiEx,12294764,21,21)
+  {
+   WorkCount=#5:doAdd|
+   DataCount=#5:_Data|
+   link(doAdd,14796471:doCompare,[(109,27)(109,300)])
+  }
+  Add(Panel,11908196,147,133)
+  {
+   Left=35
+   Top=105
+   Align=5
+  }
+  Add(StringTableMT,14819279,770,294)
+  {
+   Top=20
+   Width=384
+   Height=241
+   Align=5
+   Columns=#4:Прог|6:Ошибка|
+   IconsCheck=[]
+   MiscIcons=[]
+   Icons=[]
+  }
+  Add(LineBreakEx,12068700,630,238)
+  {
+   @Color=16757247
+   Caption="topikName"
+   Type=2
+  }
+  Add(LineBreakEx,5082067,476,168)
+  {
+   @Color=16757247
+   Caption="topikName"
+   Type=3
+   link(_Data,12294764:_Data,[(482,94)(27,94)])
+  }
+  Add(StrMask,14796471,630,294)
+  {
+   Mask="Ошибка"
+   link(onFalse,14819279:doAdd,[])
+   link(Str,12068700:getVar,[])
+  }
+END_SDK
+Add(LineBreakEx,3065850,742,112)
+{
+ @Color=13959124
+ Caption="errors"
+}
+Add(LineBreakEx,10652682,812,119)
+{
+ @Color=13959124
+ Caption="errors"
+ Type=1
+}
+Add(EventRx,3990816,658,245)
+{
+ EventTransmitter="onInfo"
+ link(onEvent,4814410:doAdd,[])
+}
+Add(EventTx,12673048,672,112)
+{
+ Name="onInfo"
+}
+Add(EventRx,2574660,658,301)
+{
+ EventTransmitter="onInfo"
+ link(onEvent,6467206:doAdd,[])
+}
+Add(LineBreakEx,9601964,777,217)
+{
+ @Color=16757247
+ Caption="topikName"
+ Type=2
+}
+Add(LineBreakEx,5002292,539,182)
+{
+ @Color=16757247
+ Caption="topikName"
+ Type=3
+ link(_Data,1776696:TopicName,[])
 }
