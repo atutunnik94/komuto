@@ -1,0 +1,23 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,2953706,399,161)
+{
+ Position=1
+ Point(onClose)
+ link(onCreate,1776696:doStart,[])
+ link(onClose,1776696:doStop,[])
+}
+Add(DDEServer,1776696,448,175)
+{
+ ServiceName="Kmt"
+ link(onGetItem,1522131:doAdd,[])
+}
+Add(DDEClient,2669060,455,385)
+{
+}
+Add(Memo,1522131,567,175)
+{
+ Left=565
+ Top=180
+ Align=5
+}
